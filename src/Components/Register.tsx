@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -14,9 +15,14 @@ const Register = () => {
       <Form.Group className="mb-2">
         <Form.Control type="password" name="password" placeholder="Password" />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button className="me-2" variant="primary" type="submit">
         Register
       </Button>
+      <Link to="/"> 
+          <Button>
+            Home
+          </Button> 
+      </Link>
     </Form>
   );
 };
