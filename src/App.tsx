@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
-import ResetPassword from "./Components/ResetPassword";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
+import ResetPassword from "./Components/ResetPassword/ResetPassword";
 
 const App = () => {
   return (
