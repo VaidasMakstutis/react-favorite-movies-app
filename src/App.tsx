@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
-import ResetPassword from "./Components/ResetPassword/ResetPassword";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import Reset from "./Components/Reset";
+import Movies from "./Components/Movies";
 
 const App = () => {
   return (
@@ -11,7 +12,8 @@ const App = () => {
         <Routes>
            <Route path="/" element={<Login />} />
            <Route path="/register" element={<Register />} />
-           <Route path="/reset" element={<ResetPassword/>} />
+           <Route path="/reset" element={<Reset />} />
+           <Route path="/movies" element={<Movies />} />
         </Routes>
       </Router>
     </div>
