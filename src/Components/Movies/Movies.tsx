@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../services/authServices";
 import { useNavigate } from "react-router-dom";
 import ShowMovies from "./ShowMovies";
+import Filter from "../Filter";
 
 export interface TMovie {
   Title: string;
@@ -35,7 +36,10 @@ const Movies = () => {
 
   return (
     <>
-      <h4 className="mt-5">Your Favorite Movies List</h4>
+      <div className="text-center mb-3">
+        <Filter movies={movies} setMovies={setMovies} />
+      </div>
+      <h4>Your Favorite Movies List</h4>
       <ShowMovies movies={movies} />
     </>
   );

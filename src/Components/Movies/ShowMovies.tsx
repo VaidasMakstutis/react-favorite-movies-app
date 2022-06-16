@@ -8,7 +8,6 @@ interface IShowMoviesProps {
 
 const ShowMovies = ({ movies }: IShowMoviesProps) => {
   return (
-    <>
       <div className="movies-container">
         {movies &&
           movies.map((movie, i) => {
@@ -22,7 +21,6 @@ const ShowMovies = ({ movies }: IShowMoviesProps) => {
             );
           })}
       </div>
-    </>
   );
 };
 
