@@ -4,11 +4,12 @@ The task is to list your favorite movies (I use https://www.omdbapi.com/?s=Batma
 
 ## Features
 
-- Login and registration form
+- Registration form
+- Login/logout
 - Password reset
 - Fetch the data from the endpoint
 - Display a list for the data
-- Implement a filter for movies by year
+- Filtering movies by year
 
 ## Technology stack
 
