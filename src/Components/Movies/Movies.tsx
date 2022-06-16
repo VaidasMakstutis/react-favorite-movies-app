@@ -8,16 +8,21 @@ import Filter from "../Filter";
 
 export interface TMovie {
   Title: string;
-  Year: number;
+  Year: string;
   imdbID: string;
   Type: string;
   Poster: string;
 }
 
 const Movies = () => {
+
   const [movies, setMovies] = useState<TMovie[]>([]);
-  const [user, error, loading] = useAuthState(auth);
+  const [filteredMovies, setFilteredMovies] = useState<TMovie[]>([]);
+  const [years, setYears] = useState<string[]>([]);
+
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!user) navigate("/");
@@ -27,6 +32,7 @@ const Movies = () => {
     await axios.get(`https://www.omdbapi.com/?s=Batman&apikey=887f9f42`).then(res => {
       const data: TMovie[] = res.data.Search;
       setMovies([...data]);
+      setYears(data.map(movie => movie.Year).sort((a, b) => a.localeCompare(b)));
     });
   };
 
@@ -37,10 +43,10 @@ const Movies = () => {
   return (
     <>
       <div className="text-center mb-3">
-        <Filter movies={movies} setMovies={setMovies} />
+        <Filter movies={movies} years={years} setFilteredMovies={setFilteredMovies} />
       </div>
       <h4>Your Favorite Movies List</h4>
-      <ShowMovies movies={movies} />
+      <ShowMovies movies={filteredMovies.length ? filteredMovies : movies} />
     </>
   );
 };

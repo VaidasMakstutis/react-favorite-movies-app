@@ -1,24 +1,32 @@
-import React from "react";
-import { Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 import { TMovie } from "../Movies/Movies";
 
 interface IFilterProps {
   movies: TMovie[];
-  setMovies: React.Dispatch<React.SetStateAction<TMovie[]>>;
+  setFilteredMovies: React.Dispatch<React.SetStateAction<TMovie[]>>;
+  years: string[];
 }
 
-const Filter = ({ movies, setMovies }: IFilterProps) => {
-  const moviesOldestThan2000 = () => {
-    const year = 2000;
-    setMovies(movies.filter(movie => movie.Year < year));
+const Filter = ({ movies, setFilteredMovies, years }: IFilterProps) => {
+
+  const [filterByYear, setFilterByYear] = useState("");
+
+  const handleChange:React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    setFilterByYear(event.target.value);
+    setFilteredMovies(() => movies.filter(movie => movie.Year === event.target.value));
   };
 
   return (
-    <div className="mt-4">
-      <label className="mx-2">Filter options:</label>
-      <Button variant="primary" onClick={moviesOldestThan2000}>
-        Movies oldest than 2000
-      </Button>
+    <div className="d-flex justify-content-center mt-4">
+        <Form.Select className="w-25" value={filterByYear} onChange={handleChange}>
+          <option value="0">Select movie year</option>
+          {years.map(year => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </Form.Select>
     </div>
   );
 };
