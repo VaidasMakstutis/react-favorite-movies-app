@@ -1,0 +1,18 @@
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+  .card {
+    width: 340px;
+    margin: 5px;
+    .card-body {
+      text-align: center;
+      .card-body-info {
+        height: 60px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+  }
+}
