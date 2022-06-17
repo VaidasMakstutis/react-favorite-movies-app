@@ -11,25 +11,25 @@ const Login = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   
-  const submitHandler = (e: { preventDefault: () => void; }) => {
-      e.preventDefault();
+  const submitHandler:React.FormEventHandler<HTMLFormElement> = (event) => {
+      event.preventDefault();
       signIn(email, password);
   }
   
   useEffect(()=> {
       if(loading) return
       if(user) navigate("/movies")
-  }, [user, loading, navigate])
+  }, [user, loading])
 
   return (
     <>
       <Form className="mt-5" onSubmit={submitHandler}>
         <h3 className="mb-3 text-center">Login to your account</h3>
         <Form.Group className="mb-2">
-          <Form.Control type="email" name="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Form.Control type="email" name="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
         </Form.Group>
         <Form.Group className="mb-2">
-          <Form.Control type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <Form.Control type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
         </Form.Group>
         <Button  className="mb-3" variant="primary" type="submit">
           Login
@@ -38,7 +38,7 @@ const Login = () => {
       <div>
         <ul>
           <li>
-            Don't have account? <Link to="/register"> Sign In</Link>
+            Don't have account? <Link to="/register"> Sign Up</Link>
           </li>
           <li>
             Forgot password? <Link to="/reset"> Reset</Link>

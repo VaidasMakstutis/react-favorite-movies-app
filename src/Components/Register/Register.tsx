@@ -24,10 +24,10 @@ const Register = () => {
   useEffect(()=>{
     if(loading) return
     if(user) navigate("/movies")
-  }, [user, loading, navigate])
+  }, [user, loading])
   
-  const submitHandler = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const submitHandler:React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
     if(!name) alert("Please enter your name")
     register(name, email, password)
   }
@@ -36,16 +36,16 @@ const Register = () => {
     <Form className="mt-5" onSubmit={submitHandler}>
       <h3 className="mb-3 text-center">Create your account</h3>
       <Form.Group className="mb-2">
-        <Form.Control type="text" name="name" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+        <Form.Control type="text" name="name" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required/>
       </Form.Group>
       <Form.Group className="mb-2">
-        <Form.Control type="email" name="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Form.Control type="email" name="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
       </Form.Group>
       <Form.Group className="mb-2">
-        <Form.Control type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Form.Control type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
       </Form.Group>
       <Button className="me-2" variant="primary" type="submit">
-        Register
+        Sign Up
       </Button>
       <Link to="/"> 
           <Button>
