@@ -8,7 +8,7 @@ import { IUserData } from "../Register/Register";
 
 const User = () => {
   const [userData, setUserData] = useState<IUserData | null>(null);
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const User = () => {
       return;
     }
     userServices.getUserData(user, setUserData);
-  }, [user, loading, userData, navigate]);
+  }, [user, loading, userData]);
 
   return (
     <Navbar.Collapse>
