@@ -5,40 +5,50 @@ import { auth } from "../../services/authServices";
 import { useNavigate } from "react-router-dom";
 import ShowMovies from "./ShowMovies";
 import Filter from "../Filter";
-
-export interface TMovie {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-}
+import Loader from "../Loader";
+import { RouteKey } from "../../navigation/router";
+import { TMovie } from "../../api";
+import { API_URL } from "../../api/shared/constants";
 
 const Movies = () => {
-
+  
   const [movies, setMovies] = useState<TMovie[]>([]);
   const [filteredMovies, setFilteredMovies] = useState<TMovie[]>([]);
   const [years, setYears] = useState<string[]>([]);
 
+  const [loading, setLoading] = useState(false);
+  
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
-
+  
   useEffect(() => {
-    if (!user) navigate("/");
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+  
+  
+  useEffect(() => {
+    if (!user) navigate(RouteKey.Index);
   }, [user]);
-
+  
   const getResponse = async () => {
-    await axios.get(`https://www.omdbapi.com/?s=Batman&apikey=887f9f42`).then(res => {
+    await axios.get(API_URL).then(res => {
       const data: TMovie[] = res.data.Search;
       setMovies([...data]);
       setYears(data.map(movie => movie.Year).sort((a, b) => a.localeCompare(b)));
     });
   };
-
+  
   useEffect(() => {
     getResponse();
   }, []);
+  
+  if (loading) {
+    return <Loader />
+  }
 
   return (
     <>

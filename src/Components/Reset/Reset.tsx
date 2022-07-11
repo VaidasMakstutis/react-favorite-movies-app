@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { RouteKey } from "../../navigation/router";
 import { resetPassword } from "../../services/authServices";
 
 const Reset = () => {
@@ -11,7 +12,7 @@ const Reset = () => {
     event.preventDefault();
     if (!email) alert("Please enter your e-mail");
       resetPassword(email);
-      navigate("/");
+      navigate(RouteKey.Index);
   };
 
   return (
@@ -29,7 +30,7 @@ const Reset = () => {
         </Link>
       </Form>
       <div>
-        Don't have account? <Link to="/register">Register</Link>
+        Don't have account? <Link to={RouteKey.Register}>Register</Link>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import { TMovie } from "../Movies/Movies";
+import { TMovie } from "../../api/types";
 
 interface IFilterProps {
   movies: TMovie[];
