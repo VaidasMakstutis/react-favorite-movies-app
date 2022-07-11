@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { TMovie } from "./Movies";
+import { TMovie } from "../../api/types";
 
 interface IShowMoviesProps {
   movies: TMovie[];
