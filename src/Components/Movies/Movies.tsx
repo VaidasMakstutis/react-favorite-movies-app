@@ -5,6 +5,7 @@ import { auth } from "../../services/authServices";
 import { useNavigate } from "react-router-dom";
 import ShowMovies from "./ShowMovies";
 import Filter from "../Filter";
+import { RouteKey } from "../../navigation/router";
 
 export interface TMovie {
   Title: string;
@@ -25,7 +26,7 @@ const Movies = () => {
 
 
   useEffect(() => {
-    if (!user) navigate("/");
+    if (!user) navigate(RouteKey.Index);
   }, [user]);
 
   const getResponse = async () => {

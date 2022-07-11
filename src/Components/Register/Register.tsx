@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { register, auth } from "../../services/authServices";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { RouteKey } from "../../navigation/router";
 
 export interface IUserData {
   name: string;
@@ -23,7 +24,7 @@ const Register = () => {
   
   useEffect(()=>{
     if(loading) return
-    if(user) navigate("/movies")
+    if(user) navigate(RouteKey.Movies)
   }, [user, loading])
   
   const submitHandler:React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -47,7 +48,7 @@ const Register = () => {
       <Button className="me-2" variant="primary" type="submit">
         Sign Up
       </Button>
-      <Link to="/"> 
+      <Link to={RouteKey.Index}> 
           <Button>
             Home
           </Button> 
