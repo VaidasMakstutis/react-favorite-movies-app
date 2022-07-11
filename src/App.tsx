@@ -1,22 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
-import Reset from "./Components/Reset";
-import Movies from "./Components/Movies";
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Components/Header";
+import MainRouter from "./navigation/MainRouter";
 
 const App = () => {
   return (
     <div className="App">
       <Router>
         <Header />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/reset" element={<Reset />} />
-            <Route path="/movies" element={<Movies />} />
-          </Routes>
+        <MainRouter />
       </Router>
     </div>
   );

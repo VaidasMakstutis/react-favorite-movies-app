@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signIn} from "../../services/authServices";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { RouteKey } from "../../navigation/router";
 
 const Login = () => {
 
@@ -18,7 +19,7 @@ const Login = () => {
   
   useEffect(()=> {
       if(loading) return
-      if(user) navigate("/movies")
+      if(user) navigate(RouteKey.Movies)
   }, [user, loading])
 
   return (
@@ -38,10 +39,10 @@ const Login = () => {
       <div>
         <ul>
           <li>
-            Don't have account? <Link to="/register"> Sign Up</Link>
+            Don't have account? <Link to={RouteKey.Register}> Sign Up</Link>
           </li>
           <li>
-            Forgot password? <Link to="/reset"> Reset</Link>
+            Forgot password? <Link to={RouteKey.Reset}> Reset</Link>
           </li>
         </ul>
       </div>

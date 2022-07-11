@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logout } from "../../services/authServices";
 import * as userServices from "../../services/userServices";
 import { IUserData } from "../Register/Register";
+import { RouteKey } from "../../navigation/router";
 
 const User = () => {
   const [userData, setUserData] = useState<IUserData | null>(null);
@@ -14,7 +15,7 @@ const User = () => {
   useEffect(() => {
     if (loading) return;
     if (!user) {
-      navigate("/");
+      navigate(RouteKey.Index);
       return;
     }
     userServices.getUserData(user, setUserData);
