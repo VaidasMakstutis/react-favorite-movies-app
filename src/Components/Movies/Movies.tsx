@@ -11,43 +11,33 @@ import { TMovie } from "../../api";
 import { API_URL } from "../../api/shared/constants";
 
 const Movies = () => {
-  
   const [movies, setMovies] = useState<TMovie[]>([]);
   const [filteredMovies, setFilteredMovies] = useState<TMovie[]>([]);
   const [years, setYears] = useState<string[]>([]);
 
   const [loading, setLoading] = useState(false);
-  
+
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
-  
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-  
-  
   useEffect(() => {
     if (!user) navigate(RouteKey.Index);
   }, [user]);
-  
-  const getResponse = async () => {
-    await axios.get(API_URL).then(res => {
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      setLoading(true);
+      const res = await axios.get(API_URL);
       const data: TMovie[] = res.data.Search;
       setMovies([...data]);
       setYears(data.map(movie => movie.Year).sort((a, b) => a.localeCompare(b)));
-    });
-  };
-  
-  useEffect(() => {
-    getResponse();
+      setLoading(false);
+    };
+    fetchMovies();
   }, []);
-  
+
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
